@@ -178,11 +178,14 @@ df.to.bvh <-function(input.skeleton, df.to.save, plot.me = FALSE, frame.id = -1,
       q.prawe.biodro <- myEV2Q(axisu, x)
       q.oba.biodra <- q.prawe.biodro %Q*% q.lewe.biodro
 
-      ea.oba.biodra <- Q2EA(q.oba.biodra, 'zyx', ignoreAllChk = TRUE) * 180 / pi
-      if (anyNA(ea.oba.biodra)) {
-      ea.oba.biodra <- matrix(c(0, 0, 0), nrow = 1, 
+      if (anyNA(q.oba.biodra)) {
+        ea.oba.biodra <- matrix(c(0, 0, 0), nrow = 1, 
         ncol = 3)
-    }
+      }
+      else
+      {
+        ea.oba.biodra <- Q2EA(q.oba.biodra, 'zyx', ignoreAllChk = FALSE) * 180 / pi
+      }
       first.frame$skeleton$Joints[[parent.id]]$Rxyz[index,1] <- ea.oba.biodra[3]
       first.frame$skeleton$Joints[[parent.id]]$Rxyz[index,2] <- ea.oba.biodra[2]
       first.frame$skeleton$Joints[[parent.id]]$Rxyz[index,3] <- ea.oba.biodra[1]
@@ -202,11 +205,13 @@ df.to.bvh <-function(input.skeleton, df.to.save, plot.me = FALSE, frame.id = -1,
     q.prawe.biodro <- myEV2Q(axisu, response$par)
 
     q.oba.biodra <- q.prawe.biodro %Q*% q.lewe.biodro
-
-    ea.oba.biodra <- Q2EA(q.oba.biodra, 'zyx', ignoreAllChk = FALSE) * 180 / pi
-    if (anyNA(ea.oba.biodra)) {
+    if (anyNA(q.oba.biodra)) {
       ea.oba.biodra <- matrix(c(0, 0, 0), nrow = 1, 
         ncol = 3)
+    }
+    else
+    {
+      ea.oba.biodra <- Q2EA(q.oba.biodra, 'zyx', ignoreAllChk = FALSE) * 180 / pi
     }
     first.frame$skeleton$Joints[[parent.id]]$Rxyz[index,1] <- ea.oba.biodra[3]
     first.frame$skeleton$Joints[[parent.id]]$Rxyz[index,2] <- ea.oba.biodra[2]
