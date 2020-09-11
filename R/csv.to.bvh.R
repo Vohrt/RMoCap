@@ -145,7 +145,7 @@ df.to.bvh <-function(input.skeleton, df.to.save, plot.me = FALSE, frame.id = -1,
     }
     library(RSpincalc)
 
-    ea <- DCM2EA(Rx2y, 'zyx') * 180 / pi
+    ea <- DCM2EA(Rx2y, 'zyx',ignoreAllChk = TRUE) * 180 / pi
 
 
     eeaa <- ea * (pi / 180)
@@ -274,7 +274,7 @@ df.to.bvh <-function(input.skeleton, df.to.save, plot.me = FALSE, frame.id = -1,
 
       library(RSpincalc)
 
-      ea <- DCM2EA(Rx2y, 'zyx') * 180 / pi
+      ea <- DCM2EA(Rx2y, 'zyx',ignoreAllChk = TRUE) * 180 / pi
 
       eeaa <- ea * (pi / 180)
       q.lewe.biodro <- EA2Q(eeaa, 'zyx')
